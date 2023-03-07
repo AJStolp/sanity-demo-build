@@ -1,19 +1,25 @@
 import Head from "next/head";
-import useFetchData from "@/hooks/fetch";
+// hook isnt really needed with server side
+// import useFetchData from "@/hooks/fetch";
 import { IStrain } from "@/interfaces/IStrain";
+import axios from "axios";
+import { fetchStrains } from "@/static-props/fetched-strains";
 
-export default function Home() {
-  const PROJECT_ID = "qosix616";
-  const DATASET = "production";
-  const QUERY = encodeURIComponent('*[_type == "strain"]');
+export default function Home({
+  fetchedData,
+}: {
+  fetchedData: { name: string }[];
+}) {
+  // const PROJECT_ID = "qosix616";
+  // const DATASET = "production";
+  // const QUERY = encodeURIComponent('*[_type == "strain"]');
 
-  // Compose the URL for your project's endpoint and add the query
-  const sanityApi = `https://${PROJECT_ID}.api.sanity.io/v2021-10-21/data/query/${DATASET}?query=${QUERY}`;
+  // // Compose the URL for your project's endpoint and add the query
+  // const sanityApi = `https://${PROJECT_ID}.api.sanity.io/v2021-10-21/data/query/${DATASET}?query=${QUERY}`;
 
-  const { fetchedData }: { fetchedData: IStrain[] } = useFetchData({
-    url: sanityApi,
-  });
-
+  // const { fetchedData }: { fetchedData: IStrain[] } = useFetchData({
+  //   url: sanityApi,
+  // });
   return (
     <>
       <Head>
@@ -35,4 +41,8 @@ export default function Home() {
       </main>
     </>
   );
+}
+export async function getStaticProps() {
+  const fetchedData = await fetchStrains();
+  return { props: { fetchedData } };
 }
