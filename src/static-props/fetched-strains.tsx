@@ -1,8 +1,8 @@
 import { IStrain } from "@/interfaces/IStrain";
 import axios from "axios";
 
-const PROJECT_ID = "qosix616";
-const DATASET = "production";
+const PROJECT_ID = process.env.SANITY_PROJECT_ID;
+const DATASET = process.env.SANITY_DATASET;
 const QUERY = encodeURIComponent('*[_type == "strain"]');
 const sanityApi = `https://${PROJECT_ID}.api.sanity.io/v2021-10-21/data/query/${DATASET}?query=${QUERY}`;
 
