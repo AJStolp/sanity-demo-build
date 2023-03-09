@@ -1,16 +1,22 @@
 import Head from "next/head";
+import NavBar from "@/components/navbar";
+import Toggle from "@/components/toggle";
+
 import { IStrain } from "@/interfaces/IStrain";
+import { INav } from "@/interfaces/INav";
+import { IToggle } from "@/interfaces/IToggle";
+
 import { fetchedStrains } from "@/static-props/fetched-strains";
 import { fetchedNavigation } from "@/static-props/fetched-navigation";
-import NavBar from "@/components/navbar";
-import { INav } from "@/interfaces/INav";
+import { fetchedThemeSwitch } from "@/static-props/fetched-theme-toggle";
 interface HomeProps {
   fetchedNavData: INav[];
   fetchedStrainData: IStrain[];
+  fetchedThemeSwitchData: IToggle[];
 }
 
 export default function Home(props: HomeProps) {
-  const { fetchedNavData, fetchedStrainData } = props;
+  const { fetchedNavData, fetchedStrainData, fetchedThemeSwitchData } = props;
 
   return (
     <>
@@ -21,14 +27,20 @@ export default function Home(props: HomeProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="">
-        <NavBar fetchedData={fetchedNavData} />
+        <span>
+          <Toggle fetchedData={fetchedThemeSwitchData} />
+          <NavBar fetchedData={fetchedNavData} />
+        </span>
       </main>
     </>
   );
 }
 export async function getStaticProps() {
   const fetchedStrainData = await fetchedStrains();
-
   const fetchedNavData = await fetchedNavigation();
-  return { props: { fetchedNavData, fetchedStrainData } };
+  const fetchedThemeSwitchData = await fetchedThemeSwitch();
+
+  return {
+    props: { fetchedNavData, fetchedStrainData, fetchedThemeSwitchData },
+  };
 }
