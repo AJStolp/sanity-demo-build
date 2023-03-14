@@ -9,6 +9,10 @@ import { IToggle } from "@/interfaces/IToggle";
 import { fetchedStrains } from "@/static-props/fetched-strains";
 import { fetchedNavigation } from "@/static-props/fetched-navigation";
 import { fetchedThemeSwitch } from "@/static-props/fetched-theme-toggle";
+
+import { PreviewSuspense } from "next-sanity/preview";
+import { client } from "@/lib/sanity.client";
+import type { SanityDocument } from "@sanity/client";
 interface HomeProps {
   fetchedNavData: INav[];
   fetchedStrainData: IStrain[];
