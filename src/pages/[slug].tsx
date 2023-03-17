@@ -37,5 +37,5 @@ export default function Page({
 }: {
   data: { navigation: SanityDocument };
 }) {
-  return <NavBar data={data} />;
+  return <NavBar data={[]} />;
 }
