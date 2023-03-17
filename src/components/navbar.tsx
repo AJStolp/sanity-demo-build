@@ -1,4 +1,4 @@
-import { ILinkItem } from "@/interfaces/INavItem";
+import { PortableText } from "@portabletext/react";
 import type { SanityDocument } from "@sanity/client";
 import LinkItem from "./link-item";
 
@@ -36,7 +36,15 @@ export default function NavBar(props: INavBarProps) {
         <div className="hidden w-full md:block md:w-auto" id="navbar-default">
           <ul className="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
             {props.data.map((val, index: number) => {
-              return <LinkItem href={val.link} title={val.link}></LinkItem>;
+              return (
+                <>
+                  <LinkItem
+                    key={index}
+                    href={val.href}
+                    title={val.title}
+                  ></LinkItem>
+                </>
+              );
             })}
           </ul>
         </div>

@@ -1,9 +1,5 @@
+import { ILinkItem } from "@/interfaces/ILinkItem";
 import Link from "next/link";
-
-interface ILinkItem {
-  href: string;
-  title: string;
-}
 
 export default function LinkItem(props: ILinkItem) {
   return (
