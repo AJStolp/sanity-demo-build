@@ -1,4 +1,3 @@
-import { PortableText } from "@portabletext/react";
 import type { SanityDocument } from "@sanity/client";
 import LinkItem from "./link-item";
 
