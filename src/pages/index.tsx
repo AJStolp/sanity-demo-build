@@ -1,14 +1,18 @@
 import Head from "next/head";
 import NavBar from "@/components/navbar";
 import { client } from "@/lib/sanity.client";
+import type { SanityDocument } from "@sanity/client";
+import { PreviewSuspense } from "next-sanity/preview";
 import { queryNav } from "@/query/quieries";
 import { INavData } from "@/interfaces/INav";
+import Toggle from "@/components/toggle";
 
 interface IHome {
-  data: INavData[];
+  data: SanityDocument[];
+  preview: Boolean;
 }
 
-export default function Home({ data }: IHome) {
+export default function Home(props: IHome) {
   return (
     <>
       <Head>
@@ -19,18 +23,19 @@ export default function Home({ data }: IHome) {
       </Head>
       <main className="">
         <span>
-          <NavBar data={data} />
+          {/* <Toggle fetchedData={[]} /> */}
+          <NavBar data={props.data} />
         </span>
       </main>
     </>
   );
 }
 
-export const getStaticProps = async () => {
-  const fetchedData = await client.fetch(queryNav);
-  {
-    console.log(fetchedData, "fetcheddatatatataa");
+export const getStaticProps = async ({ preview = false }) => {
+  if (preview) {
+    return { props: { preview } };
   }
+  const fetchedData = await client.fetch(queryNav);
 
   return { props: { data: fetchedData } };
 };

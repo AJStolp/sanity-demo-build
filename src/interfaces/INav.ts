@@ -1,6 +1,4 @@
-export interface INavItem {
-  link: string;
-}
+import { ILinkItem } from "./INavItem";
 
 export interface INavData {
   title: string;
@@ -10,6 +8,6 @@ export interface INavData {
   link: string;
 }
 
-export interface INav<T extends INavItem[]> {
+export interface INav<T extends ILinkItem[]> {
   items: T;
 }
