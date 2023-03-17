@@ -1,7 +1,12 @@
-import { INav } from "@/interfaces/INav";
-import Link from "next/link";
+import { PortableText } from "@portabletext/react";
+import type { SanityDocument } from "@sanity/client";
+import LinkItem from "./link-item";
 
-export default function NavBar({ fetchedData }: { fetchedData: INav[] }) {
+interface INavBarProps {
+  data: SanityDocument[];
+}
+
+export default function NavBar(props: INavBarProps) {
   return (
     <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
       <div className="container flex flex-wrap items-center justify-between mx-auto">
@@ -30,11 +35,11 @@ export default function NavBar({ fetchedData }: { fetchedData: INav[] }) {
         </button>
         <div className="hidden w-full md:block md:w-auto" id="navbar-default">
           <ul className="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-            {fetchedData.map((val, index) => {
+            {props.data.map((val, index: number) => {
               return (
-                <Link key={index} href="#">
-                  {val.link}
-                </Link>
+                <span key={index}>
+                  <LinkItem href={val.href} title={val.title}></LinkItem>
+                </span>
               );
             })}
           </ul>

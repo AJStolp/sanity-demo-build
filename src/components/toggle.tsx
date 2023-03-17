@@ -1,9 +1,6 @@
 import { IToggle } from "@/interfaces/IToggle";
 
 export default function Toggle({ fetchedData }: { fetchedData: IToggle[] }) {
-  {
-    console.log(fetchedData, "toggle fetched");
-  }
   return (
     <>
       <label className="relative inline-flex items-center cursor-pointer">
