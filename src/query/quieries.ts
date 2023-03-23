@@ -5,3 +5,8 @@ export const queryNav = groq`*[_type == "navigation"]{
   title,
   href,
 }`;
+
+export const queryThemeToggle = groq`*[_type == "toggle"]{
+  _id,
+  themetoggle,
+}`;

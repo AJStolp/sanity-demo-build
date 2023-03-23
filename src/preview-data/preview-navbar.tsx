@@ -1,11 +1,15 @@
-// ./components/PreviewMovies.tsx
-
 import Link from "next/link";
 import { usePreview } from "@/lib/sanity.preview";
 import Navbabr from "@/components/navbar";
+import Toggle from "@/components/toggle";
 
-export default function PreviewNavBar({ query }: { query: string }) {
-  const data = usePreview(null, query);
+interface IPreviewNavBar {
+  query: string;
+}
+
+export default function PreviewNavBar(props: IPreviewNavBar) {
+  const data = usePreview(null, props.query);
+  console.log(data, "data");
 
   return (
     <>

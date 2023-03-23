@@ -1,3 +1,3 @@
 export interface IToggle {
-  themeswitch: string;
+  themetoggle: string;
 }

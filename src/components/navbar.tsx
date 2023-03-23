@@ -1,5 +1,5 @@
 import type { SanityDocument } from "@sanity/client";
-import LinkItem from "./link-item";
+import Link from "./link-item";
 
 interface INavBarProps {
   data: SanityDocument[];
@@ -37,7 +37,10 @@ export default function NavBar(props: INavBarProps) {
             {props.data.map((val, index: number) => {
               return (
                 <span key={index}>
-                  <LinkItem href={val.href} title={val.title}></LinkItem>
+                  <Link
+                    href={val?.href ? val.href : " href placeholder"}
+                    title={val.title ? val.title : "title placeholder"}
+                  ></Link>
                 </span>
               );
             })}
