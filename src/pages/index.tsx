@@ -1,12 +1,9 @@
-import Head from "next/head";
 import NavBar from "@/components/navbar";
 import { client } from "@/lib/sanity.client";
 import type { SanityDocument } from "@sanity/client";
 import { PreviewSuspense } from "next-sanity/preview";
-import { queryNav } from "@/query/quieries";
-import { queryThemeToggle } from "@/query/quieries";
+import { queryNav, queryThemeToggle } from "@/query/quieries";
 import { lazy } from "react";
-import Link from "next/link";
 import Toggle from "@/components/toggle";
 
 interface IHome {
@@ -15,17 +12,15 @@ interface IHome {
   preview: Boolean;
 }
 
-const PreviewNavBar = lazy(() => import("../components/preview-navbar"));
+// const PreviewNavBar = lazy(() => import("@/preview-data/preview-navbar"));
+const PreviewData = lazy(() => import("@/preview-data/preview-data"));
 
 export default function Home(props: IHome) {
   return (
     <>
-      <Head>
-        <Link href={""}></Link>
-      </Head>
       {props.preview ? (
         <PreviewSuspense fallback="Loading...">
-          <PreviewNavBar query={queryNav} />
+          <PreviewData query={[queryNav, queryThemeToggle]} />
         </PreviewSuspense>
       ) : (
         <main className="">
