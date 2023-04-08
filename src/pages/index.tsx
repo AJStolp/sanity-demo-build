@@ -4,12 +4,14 @@ import type { SanityDocument } from "@sanity/client";
 import { PreviewSuspense } from "next-sanity/preview";
 import { queryNav, queryThemeToggle } from "@/query/quieries";
 import { lazy } from "react";
-import Toggle from "@/components/toggle";
+import ThemeToggle from "@/components/theme-toggle";
+import { MouseEventHandler } from "react";
 
 interface IHome {
   navdata: SanityDocument[];
   toggledata: SanityDocument[];
   preview: Boolean;
+  onClick: MouseEventHandler<HTMLButtonElement>;
 }
 
 // const PreviewNavBar = lazy(() => import("@/preview-data/preview-navbar"));
@@ -25,7 +27,8 @@ export default function Home(props: IHome) {
       ) : (
         <main className="">
           <span>
-            <Toggle data={props.toggledata} />
+            <ThemeToggle />
+            {/* <Toggle data={props.toggledata} /> */}
             <NavBar data={props.navdata} />
           </span>
         </main>
