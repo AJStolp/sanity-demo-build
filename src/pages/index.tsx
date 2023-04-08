@@ -3,9 +3,8 @@ import { client } from "@/lib/sanity.client";
 import type { SanityDocument } from "@sanity/client";
 import { PreviewSuspense } from "next-sanity/preview";
 import { queryNav, queryThemeToggle } from "@/query/quieries";
-import { MouseEvent, lazy } from "react";
+import { lazy } from "react";
 import ThemeToggle from "@/components/theme-toggle";
-import { useToggleTheme } from "@/hooks/check-and-set-theme";
 import { MouseEventHandler } from "react";
 
 interface IHome {
@@ -19,8 +18,6 @@ interface IHome {
 const PreviewData = lazy(() => import("@/preview-data/preview-data"));
 
 export default function Home(props: IHome) {
-  // const { setTheme } = useToggleTheme();
-
   return (
     <>
       {props.preview ? (

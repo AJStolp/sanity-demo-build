@@ -1,12 +1,5 @@
 import Button from "@/components/button";
-import { useState } from "react";
 import { useToggleTheme } from "@/hooks/check-and-set-theme";
-import { MouseEventHandler } from "react";
-
-// interface IThemeToggle {
-//   onClick: MouseEventHandler<HTMLButtonElement>;
-// }
-// props: IThemeToggle
 
 export default function ThemeToggle() {
   const { setTheme } = useToggleTheme();
